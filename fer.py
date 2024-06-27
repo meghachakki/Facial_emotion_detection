@@ -5,12 +5,14 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from keras.optimizers import Adam
-from keras.models import Sequential, model_from_json
-from keras.layers import Conv2D, MaxPooling2D, Dense, Flatten, Dropout, BatchNormalization, Activation
-from keras.preprocessing.image import ImageDataGenerator
+from tensorflow import keras
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.models import Sequential, model_from_json
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, Dense, Flatten, Dropout, BatchNormalization, Activation
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from sklearn import model_selection
 from math import ceil
+
 
 
 # Loads csv files and appends pixels to X and labels to y
@@ -208,7 +210,7 @@ def run_model():
     # Training model from scratch
     model = define_model(input_shape=x_train[0].shape, classes=len(fer_classes))
     model.summary()
-    model.compile(optimizer=Adam(lr=0.0001), loss='binary_crossentropy', metrics=['accuracy'])
+    model.compile(optimizer=Adam(learning_rate=0.0001), loss='binary_crossentropy', metrics=['accuracy'])
     history = model.fit(datagen.flow(x_train, y_train, batch_size=batch_size), epochs=epochs,
                         steps_per_epoch=len(x_train) // batch_size,
                         validation_data=(x_val, y_val), verbose=2)

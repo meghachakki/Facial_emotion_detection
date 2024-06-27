@@ -1,8 +1,8 @@
 import cv2
 import argparse
 import numpy as np
-from keras.models import model_from_json
-from keras.preprocessing import image
+from tensorflow.keras.models import model_from_json
+from tensorflow.keras.preprocessing import image
 
 # Parse the arguments
 ap = argparse.ArgumentParser()
